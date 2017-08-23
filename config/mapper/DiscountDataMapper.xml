@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "HTTP://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--命名空间，sql隔离，对sql进行分类管理
+注意：使用mapper代理方法开发，则有特殊作用-->
+
+
+<mapper namespace="com.hanxiao.mapper.DiscountItemMapper">
+
+    <!--查询订单管理查询用户信息-->
+
+    <select id="findDiscountDataByType" resultType="com.hanxiao.po.DiscountItemData" parameterType="java.lang.String">
+        select * from discount_data
+        <where>
+            <if test="type != null">
+                <if test="type != '0'.toString()">
+                    type = #{type}
+                </if>
+            </if>
+        </where>
+    </select>
+
+    <select id="findDiscountDataWithOffset" resultType="com.hanxiao.po.DiscountItemData"
+            parameterType="java.util.Map">
+        select * from discount_data
+        <where>
+            <if test="type != null">
+                <if test="type != '0'.toString()">
+                    type = #{type}
+                </if>
+            </if>
+        </where>
+        <!--从第begin条记录起，查出offset条记录-->
+        order by id desc limit #{begin},#{offset}
+    </select>
+
+
+    <insert id="insertDiscountData" parameterType="com.hanxiao.po.DiscountItemData">
+        insert into
+        discount_data(type,description,originPrice,couponPrice,discount,imageUrl,title,actionUrl,platformDesc)
+        values(#{type},#{description},#{originPrice},#{couponPrice},#{discount},#{imageUrl},#{title},#{actionUrl},#{platformDesc});
+    </insert>
+
+    <update id="updateDiscountData" parameterType="com.hanxiao.po.DiscountItemData">
+        update discount_data set type=#{type}, description=#{description}, originPrice=#{originPrice},
+        couponPrice=#{couponPrice},discount=#{discount},imageUrl=#{imageUrl}, title=#{title} where id = #{id};
+    </update>
+    <delete id="delDiscountData" parameterType="long">
+        delete from discount_data where id = #{id}
+    </delete>
+
+</mapper>

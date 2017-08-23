@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "HTTP://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--命名空间，sql隔离，对sql进行分类管理
+注意：使用mapper代理方法开发，则有特殊作用-->
+
+
+<mapper namespace="com.hanxiao.mapper.VersionMapper">
+    <!--查询订单管理查询用户信息-->
+    <select id="getVersion" resultType="com.hanxiao.po.VersionData">
+        select * from version;
+    </select>
+
+    <insert id="insertUser" parameterType="java.lang.String">
+        <!--replace into users(deviceId) values(#{deviceId});-->
+        <!--这样多的目的，是即保存了登录用户的唯一性，又可以知道该用户的登录频率-->
+        insert into users(deviceId) values(#{deviceId})
+        on duplicate key update id = id + 1;
+    </insert>
+</mapper>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <!--加载属性文件-->
+    <properties resource="db.properties"/>
+
+    <!--全局配置参数-->
+    <!--<settings>-->
+    <!--<setting name="" value=""/>-->
+    <!--</settings>-->
+    <!--别名的定义-->
+    <typeAliases>
+        <!--单个别名定义-->
+        <!--<typeAlias type="com.hanxiao.po.testpo.User" alias="user"/>-->
+        <!--批量别名定义,指定某个包下的，此时别名就是类名,该种方式比较常用-->
+        <package name="com.hanxiao.po"/>
+    </typeAliases>
+
+    <!--&lt;!&ndash;&lt;!&ndash;!!!!!和spring整合后environment配置将废除&ndash;&gt;&ndash;&gt;-->
+    <!--<environments default="development">-->
+        <!--<environment id="development">-->
+            <!--<transactionManager type="JDBC"/>-->
+            <!--<dataSource type="POOLED">-->
+                <!--<property name="driver" value="${jdbc.driver}"/>-->
+                <!--<property name="url" value="${jdbc.url}"/>-->
+                <!--<property name="username" value="${jdbc.username}"/>-->
+                <!--<property name="password" value="${jdbc.password}"/>-->
+            <!--</dataSource>-->
+        <!--</environment>-->
+    <!--</environments>-->
+
+    <!--全局setting配置，根据需要再加-->
+    <!--配置别名-->
+
+    <!--配置mapper,由于使用spring和mybatis的整合包进行mapper进行扫描，这里不
+    需要配置mappers，但必须遵循：mapper.xml和mapper.java文件同名且在同一个目录-->
+    <!--<mappers>-->
+    <!---->
+    <!--</mappers>-->
+
+    <!--加载映射文件-->
+    <mappers>
+        <!--通过resource方法来加载的是单个的映射文件-->
+        <!--<mapper resource="sqlmap/User.xml"/>-->
+        <mapper resource="mapper/UserMapper.xml"/>
+        <mapper resource="mapper/OrdersMapperCustom.xml"/>
+        <mapper resource="mapper/CouponDataMapper.xml"/>
+        <mapper resource="mapper/DiscountDataMapper.xml"/>
+        <mapper resource="mapper/PromotionDataMapper.xml"/>
+        <mapper resource="mapper/TitleMapper.xml"/>
+        <mapper resource="mapper/VersionMapper.xml"/>
+        <mapper resource="mapper/TopBannerMapper.xml"/>
+        <mapper resource="mapper/PromotionItemBannerMapper.xml"/>
+        <mapper resource="mapper/CustomItemMapper.xml"/>
+        <!--通过mapper接口来加载,此时需要mapper接口的类名与mapper.xml文件一致
+        且在同一个目录中，上边的规范前提是使用了mapper的代理方法-->
+        <!--<mapper class="com.hanxiao.mapper.testmapper.UserMapper"/>-->
+        <!--<package name="com.hanxiao.mapper"/>-->
+    </mappers>
+</configuration>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--配置处理器映射器
+将bean的name作为url进行查找，需要在配置handler时指定beanname即url-->
+
+    <bean class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping"/>
+
+    <!--使用单个的配置方式（与component-scan实现功能相同）：配置handler，将编写的handler在spring容器中加载这里.action相应于前端控制器中配置拦截的.action-->
+    <bean id="itemsController1" name="/item/queryItem.action"
+          class="com.hanxiao.controller.testcontroller.ItemsController1"/>
+    <bean id="itemsController2" name="/item/editItem.action"
+          class="com.hanxiao.controller.testcontroller.ItemsController2"/>
+
+    <!--&lt;!&ndash;注解映射器&ndash;&gt;-->
+    <!--<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"/>-->
+    <!--&lt;!&ndash;注解适配器&ndash;&gt;-->
+    <!--<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter"/>-->
+
+    <!--对于注解的handler可以单个配置，但实际开发中建议组件扫描-->
+    <!--<bean class="com.hanxiao.controller.testcontroller.ItemsController3"/>-->
+
+
+    <!--使用下mvc可以代替上面的注解映射器和注解适配器,默认加载很多参数的绑定方法，比如json的转换解析器
+    实际开发中，常用此方法-->
+    <!--<mvc:annotation-driven/>-->
+
+    <!--这里指定自动扫描controller-->
+    <context:component-scan base-package="com.hanxiao.controller"/>
+
+    <!--使用此方法，可以通过修改response来设置响应的格式，比如返回json数据：
+    response.setContentType("application/json; charset=utf-8");
+    response.getWriter().write("json")-->
+
+    <!--<bean id="itemsController2" class="com.hanxiao.controller.testcontroller.ItemsController2"/>-->
+    <!--&lt;!&ndash;简单url映射，功能同BeanNameUrlHandlerMapping&ndash;&gt;-->
+    <!--<bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">-->
+    <!--<property name="mappings">-->
+    <!--<props>-->
+    <!--<prop key="/springmvcfirst/queryItems1.action">itemsController1</prop>-->
+    <!--<prop key="/springmvcfirst/queryItems2.action">itemsController2</prop>-->
+    <!--</props>-->
+    <!--</property>-->
+    <!--</bean>-->
+
+
+    <!--配置处理器适配器,所有处理器适配器都是实现HandlerAdapter接口-->
+    <bean class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter"/>
+    <!--另一个非注解的处理器适配器,要求编写的handler实现HttpRequestHandler接口-->
+    <bean class="org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter"/>
+    <!--视图解析器
+    解析jsp视图，默认使用jstl标签，classpath下要有jstl的包-->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <!--使用前缀和后缀，在Controller中设置视图名的时候会自动加上前缀和后缀-->
+        <property name="prefix" value="/WEB-INF/jsp/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+
+
+    <!-- 启用默认配置 -->
+    <mvc:annotation-driven>
+        <mvc:message-converters register-defaults="true">
+            <!-- 配置Fastjson支持 -->
+            <bean class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter">
+                <property name="supportedMediaTypes">
+                    <list>
+                        <value>text/html;charset=UTF-8</value>
+                        <value>application/json</value>
+                    </list>
+                </property>
+                <property name="features">
+                    <list>
+                        <value>WriteMapNullValue</value>
+                        <value>QuoteFieldNames</value>
+                    </list>
+                </property>
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+
+</beans>

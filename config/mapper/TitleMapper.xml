@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "HTTP://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--命名空间，sql隔离，对sql进行分类管理
+注意：使用mapper代理方法开发，则有特殊作用-->
+
+
+<mapper namespace="com.hanxiao.mapper.TitleMapper">
+
+    <!--查询订单管理查询用户信息-->
+
+    <select id="getTitles" resultType="com.hanxiao.po.CouponItemTitle" parameterType="java.lang.String">
+        select * from titles
+        <where>
+            <if test="type != null">
+                <if test="type != ''">
+                    type = #{type}
+                </if>
+            </if>
+        </where>
+    </select>
+
+    <select id="getTitlesWithOffset" resultType="com.hanxiao.po.CouponItemTitle" parameterType="java.util.Map">
+        select * from titles order by id desc
+        <where>
+            <if test="type != null">
+                <if test="type != '0'.toString()">
+                    type = #{type}
+                </if>
+            </if>
+        </where>
+        <!--从第begin条记录起，查出offset条记录-->
+        limit #{begin},#{offset}
+    </select>
+
+    <insert id="insertTitle" parameterType="com.hanxiao.po.CouponItemTitle">
+        insert into titles(title) values(#{title});
+    </insert>
+
+    <update id="updateTitle" parameterType="com.hanxiao.po.CouponItemTitle">
+        update titles set title=#{title} where id = #{id};
+    </update>
+    <delete id="deleteTitle" parameterType="long">
+        delete from titles where id = #{id}
+    </delete>
+
+</mapper>

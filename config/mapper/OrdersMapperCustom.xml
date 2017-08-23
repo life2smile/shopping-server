@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "HTTP://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--命名空间，sql隔离，对sql进行分类管理
+注意：使用mapper代理方法开发，则有特殊作用-->
+
+<mapper namespace="com.hanxiao.mapper.testmapper.OrdersMapperCustom">
+
+    <!--查询订单管理查询用户信息-->
+
+    <select id="findOrdersUser" resultType="com.hanxiao.po.testpo.UserCustom">
+        select orders.*,user.username,user.sex
+        from orders, user
+        where orders.user_id = user.id;
+    </select>
+
+</mapper>

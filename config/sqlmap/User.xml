@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "HTTP://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--命名空间，sql隔离，对sql进行分类管理
+注意：使用mapper代理方法开发，则有特殊作用-->
+
+<mapper namespace="test">
+
+    <!--映射文件中配置sql数据-->
+    <!--通过select执行数据库查询，id标识
+    映射文件中的sql，称为statement id，将sql
+    语句封装到mappedStatement对象中
+    parameterType指定参数类型和数据库一直
+    #{id},表示输入的参数，参数名称是id，如果输入的参数是简单类型
+    #{}中的参数名可以任意，可以使value或其他名称
+    resultTYpe:指定sql输出结果输出的单条映射的java对象类型-->
+    <select id="findUserById" parameterType="int" resultType="com.hanxiao.po.testpo.User">
+        select * from user where id = #{id}
+    </select>
+
+    <select id="findUserByName" parameterType="String" resultType="com.hanxiao.po.testpo.User">
+        <!--{}里面的名字必须是value，第一种容易产生sql注入-->
+        <!--select * from user where username like '%${value}%'-->
+        select * from user where username like #{name}
+
+    </select>
+
+    <!--添加用户-->
+    <insert id="insertUser" parameterType="com.hanxiao.po.testpo.User">
+        <!--下面只适合主键递增-->
+        <selectKey keyProperty="id" order="AFTER" resultType="int">
+            select last_insert_id()
+        </selectKey>
+        <!--<selectKey keyProperty="id" order="BEFORE" resultType="string">-->
+        <!--select uuid()-->
+        <!--</selectKey>-->
+        <!--insert into user(id,username,birthday,sex,address) value(#{id},#{username},#{birthday},#{sex},#{address})-->
+        insert into user(username,birthday,sex,address) value(#{username},#{birthday},#{sex},#{address})
+    </insert>
+
+    <delete id="delUserById" parameterType="int">
+        delete from user where id = #{id}
+    </delete>
+
+    <update id="updateUser" parameterType="com.hanxiao.po.testpo.User">
+        update user set username = #{username}, birthday=#{birthday},sex=#{sex}, address=#{address} where id = #{id}
+    </update>
+</mapper>

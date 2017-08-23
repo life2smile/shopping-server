@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "HTTP://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--命名空间，sql隔离，对sql进行分类管理
+注意：使用mapper代理方法开发，则有特殊作用-->
+
+
+<mapper namespace="com.hanxiao.mapper.PromotionItemMapper">
+
+    <!--查询订单管理查询用户信息-->
+
+    <select id="findPromotionData" resultType="com.hanxiao.po.PromotionItemData">
+        select * from promotion_data
+    </select>
+
+
+    <select id="findPromotionDataWithOffset" resultType="com.hanxiao.po.PromotionItemData"
+            parameterType="java.util.Map">
+        select * from promotion_data order by id desc limit #{begin},#{offset};
+    </select>
+
+    <insert id="insertPromotionData" parameterType="com.hanxiao.po.PromotionItemData">
+        insert into promotion_data(type,description,imgUrl,actionUrl,subDescription)
+        values(#{type},#{description},#{imgUrl},#{actionUrl},#{subDescription});
+    </insert>
+
+    <update id="updatePromotionData" parameterType="com.hanxiao.po.PromotionItemData">
+        update promotion_data set type=#{type}, title=#{title}, description=#{description}, originPrice=#{originPrice},
+        promotionPrice=#{promotionPrice},promotionValue=#{promotionValue},imageUrl=#{imageUrl}, platform=#{platform}
+        where id = #{id};
+    </update>
+    <delete id="delPromotionData" parameterType="long">
+        delete from promotion_data where id = #{id}
+    </delete>
+
+</mapper>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "HTTP://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--命名空间，sql隔离，对sql进行分类管理
+注意：使用mapper代理方法开发，则有特殊作用-->
+
+
+<mapper namespace="com.hanxiao.mapper.CouponItemMapper">
+
+    <!--查询订单管理查询用户信息-->
+
+    <select id="findCouponDataByType" resultType="com.hanxiao.po.CouponItemData" parameterType="java.lang.String">
+        select * from coupon_data
+        <where>
+            <if test="type != null">
+                <if test="type != '0'.toString()">
+                    type = #{type}
+                </if>
+            </if>
+        </where>
+        order by id desc;
+    </select>
+
+    <select id="findCouponDataWithOffset" resultType="com.hanxiao.po.CouponItemData" parameterType="java.util.Map">
+        select * from coupon_data
+        <where>
+            <if test="type != null">
+                <if test="type != '0'.toString()">
+                    type = #{type}
+                </if>
+            </if>
+        </where>
+        <!--从第begin条记录起，查出offset条记录-->
+        order by id desc limit #{begin},#{offset}
+    </select>
+
+
+    <select id="searchCouponDataWithOffset" resultType="com.hanxiao.po.CouponItemData" parameterType="java.util.Map">
+        select * from coupon_data
+        <where>
+            <if test="keyword != null">
+                description like '%${keyword}%'
+            </if>
+        </where>
+        <!--从第begin条记录起，查出offset条记录-->
+        order by id desc limit #{begin},#{offset}
+    </select>
+
+
+    <insert id="insertCouponData" parameterType="com.hanxiao.po.CouponItemData">
+        insert into coupon_data(type,description,originPrice,couponPrice,couponValue,imageUrl,actionUrl,platformImg,platformDesc)
+        values(#{type},#{description},#{originPrice},#{couponPrice},#{couponValue},#{imageUrl},#{actionUrl},#{platformImg},#{platformDesc});
+    </insert>
+
+    <update id="updateCouponData" parameterType="com.hanxiao.po.CouponItemData">
+        update coupon_data set type=#{type}, description=#{description}, originPrice=#{originPrice},
+        couponPrice=#{couponPrice},couponValue=#{couponValue},imageUrl=#{imageUrl}, actionUrl=#{actionUrl} where id =
+        #{id};
+    </update>
+    <delete id="delCouponData" parameterType="long">
+        delete from coupon_data where id = #{id}
+    </delete>
+
+</mapper>

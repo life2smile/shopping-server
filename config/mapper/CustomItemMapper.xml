@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "HTTP://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--命名空间，sql隔离，对sql进行分类管理
+注意：使用mapper代理方法开发，则有特殊作用-->
+
+
+<mapper namespace="com.hanxiao.mapper.CustomItemMapper">
+
+    <select id="getCustomItemData" resultType="com.hanxiao.po.CustomItemData" parameterType="java.util.Map">
+        select * from custom_item
+        <!--从第begin条记录起，查出offset条记录-->
+        order by id desc limit #{begin},#{offset}
+    </select>
+
+    <insert id="insertCustomItemData" parameterType="com.hanxiao.po.CustomItemData">
+        insert into custom_item(description, imgUrl, actionUrl)
+        values(#{description}, #{imgUrl}, #{actionUrl});
+    </insert>
+</mapper>
