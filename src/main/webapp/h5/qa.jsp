@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 
-<html>
+<hr>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <style type="text/css">
@@ -10,7 +10,7 @@
         }
 
         .answer {
-            font-size: medium;
+            font-size: small;
             text-align: left;
             color: gray;
         }
@@ -23,7 +23,6 @@
 
     </style>
 </head>
-<body>
 
 <h2 class="question">Q: 券立减是做什么的？</h2>
 <h2 class="answer">A: 本产品旨在为您找寻优惠商品，比如商家推出的含有优惠券的商品、折扣商品、促销商品
@@ -40,6 +39,12 @@
     （2）直接打开第三方平台进行交易。</h2>
 <hr/>
 
+<h2 class="question">Q: 怎么通过本app登录到第三方平台？</h2>
+<h2 class="answer">（1）对于领取优惠券后，在当前已领取优惠券的页面处再次点击即可跳转至购买页面，然后点击购买就会跳转至
+    第三方平台登录页面。
+    （2）对于没有优惠券的商品，直接点击购买就可进入第三方平台登录页面。</h2>
+<hr/>
+
 <h2 class="question">Q: 为什么有些优惠券领取的时候提示已经失效？</h2>
 <h2 class="answer">A: 含有优惠券的商品都有时效性，而具体失效时间是商家决定的，所以建议您领取优惠券后尽快进行消费。</h2>
 <hr/>
@@ -51,5 +56,9 @@
 
 <h2 class="question">Q: 对购买的商品不满意，发生了退货等交易中断的情况该怎么处理？</h2>
 <h2 class="answer">A: 您购买商品所产生的交易均是基于第三方平台的，所有的交易问题具由第三方平台进行处理。</h2>
+<hr/>
+
+<h2 class="question">Q: 为什么有些时候打开后看不到图片？</h2>
+<h2 class="answer">A: 这是取决于您当前的网络情况，如果出现图片加载失败的情况，请耐心等待几分钟即可。</h2>
 </body>
 </html>

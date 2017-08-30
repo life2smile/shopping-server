@@ -9,7 +9,8 @@ public class TopBannerData {
     private String type;
     private String subType;
     private String actionUrl;
-
+    private String description;
+    private double price;
 
     public long getId() {
         return id;
@@ -49,5 +50,21 @@ public class TopBannerData {
 
     public void setSubType(String subType) {
         this.subType = subType;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
     }
 }

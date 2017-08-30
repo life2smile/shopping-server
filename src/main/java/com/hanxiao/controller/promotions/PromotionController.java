@@ -69,21 +69,28 @@ public class PromotionController {
             //查询顶部banner下面包含有两幅图片
             params.clear();
             params.put("begin", BusinessUtil.DEFAULT_BEGIN);
-            params.put("offset", 4);//总共返回2条数据即可
+            params.put("offset", 2);//总共返回2条数据即可
             CustomItemMapper customItemMapper = sqlSession.getMapper(CustomItemMapper.class);
             List<CustomItemData> twoItems = customItemMapper.getCustomItemData(params);
 
             //查询两幅图片下面的长图片画廊
             params.clear();
-            params.put("begin", BusinessUtil.DEFAULT_BEGIN + 4);//从第三条开始
+            params.put("begin", BusinessUtil.DEFAULT_BEGIN + 2);//从第三条开始
             params.put("offset", 20);//总共返回20条数据即可
             List<CustomItemData> heightItems = customItemMapper.getCustomItemData(params);
+
+            //查询查询第二个长图片画廊
+            params.clear();
+            params.put("begin", BusinessUtil.DEFAULT_BEGIN + 22);//从第三条开始
+            params.put("offset", 20);//总共返回20条数据即可
+            List<CustomItemData> nextHeightItems = customItemMapper.getCustomItemData(params);
 
 
             map.put("list", list);
             map.put("topBanner", topBanners);//顶部的banner
             map.put("twoItems", twoItems);//banner下面的两条item数据
             map.put("heightItems", heightItems);
+            map.put("nextHeightItems", nextHeightItems);
             map.put("hasMore", items != null && items.size() == businessRequest.getOffset());
         } catch (Exception e) {
             map.clear();
