@@ -42,6 +42,26 @@ public class UpdateVersionController {
             if (checkNeedUpdate(sqlSession, oldVersion, newVersion.getVersion())) {
                 newVersion.setNewVersion(true);
             }
+//            //app tab标签底部文字。用于动态配置tab标签页
+//
+//            //first tab
+//            BottomTabData firstTab = new BottomTabData();
+//            firstTab.setTabName("特惠区");
+//            firstTab.setTabSelectImg("");
+//            firstTab.setTabUnselectImg("");
+//
+//            //second tab
+//            BottomTabData secondTab = new BottomTabData();
+//            secondTab.setTabName("发现区");
+//            secondTab.setTabSelectImg("");
+//            secondTab.setTabUnselectImg("");
+//
+//            //third tab
+//            BottomTabData thirdTab = new BottomTabData();
+//            thirdTab.setTabName("区");
+//            thirdTab.setTabSelectImg("");
+//            thirdTab.setTabUnselectImg("");
+
         } catch (Exception e) {
             e.printStackTrace();
             sqlSession.rollback(true);

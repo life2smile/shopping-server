@@ -16,7 +16,7 @@
     </select>
 
     <insert id="insertCustomItemData" parameterType="com.hanxiao.po.CustomItemData">
-        insert into custom_item(description, imgUrl, actionUrl)
-        values(#{description}, #{imgUrl}, #{actionUrl});
+        insert into custom_item(description, imgUrl, actionUrl, originPrice, promotionPrice)
+        values(#{description}, #{imgUrl}, #{actionUrl}, #{originPrice}, #{promotionPrice});
     </insert>
 </mapper>

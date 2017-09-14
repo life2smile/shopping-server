@@ -106,8 +106,10 @@ public class PromotionDataMapperTest {
         String desc = "精品女鞋";
         String subDesc = "送给美美哒，靓丽的自己";
         String type = "6";//type可以标识类目,指示下面的小资源
-        String actionUrl = "https://g.mogujie.com/142JEfvI";
-        String imgUrl = "http://s3.mogucdn.com/mlcdn/c45406/170804_13i5a857aee33c45jc7ahfig42afi_640x900.jpg_468x468.jpg";
+        String actionUrl = "https://g.mogujie.com/1c2JYg9i";
+        String imgUrl = "http://s17.mogucdn.com/mlcdn/c45406/170820_83glc5jjg2d4jeelie133009lk4j2_640x960.jpg_468x468.jpg";
+        double originPrice = 26.00;
+        double promotionPrice = 19.9;
 
         PromotionItemData data = new PromotionItemData();
         data.setDescription(desc);
@@ -115,6 +117,8 @@ public class PromotionDataMapperTest {
         data.setActionUrl(actionUrl);
         data.setImgUrl(imgUrl);
         data.setSubDescription(subDesc);
+        data.setOriginPrice(originPrice);
+        data.setPromotionPrice(promotionPrice);
         return data;
     }
 
@@ -154,13 +158,17 @@ public class PromotionDataMapperTest {
     @Test
     public void testInsertCumtomItem() throws Exception {
         CustomItemData data = new CustomItemData();
-        String actionUrl = "https://g.mogujie.com/112JErax";
-        String imgUrl = "http://s3.mogucdn.com/p2/160912/110008588_38ld48bh184bela5hb877b3115330_640x960.jpg_468x468.jpg";
-        String desc = "韩版女装秋季黑色圆领性感修身显瘦大码中长款网布拼接长袖连衣裙";
+        String actionUrl = "https://g.mogujie.com/102JEeR1";
+        String imgUrl = "http://s3.mogucdn.com/p1/160228/1hjig3_ifrgcmjsmy3dizdggyzdambqmeyde_640x960.jpg_468x468.jpg";
+        String desc = "@新款韩版修身体恤衫纯棉圆领男士短袖T恤潮男夏季打底衫半袖\n";
+        double originPrice = 42.86;
+        double promotionPrice = 30;
 
         data.setImgUrl(imgUrl);
         data.setDescription(desc);
         data.setActionUrl(actionUrl);
+        data.setOriginPrice(originPrice);
+        data.setPromotionPrice(promotionPrice);
 
         SqlSession sqlSession = sqlSessionFactory.openSession();
         CustomItemMapper customItemMapper = sqlSession.getMapper(CustomItemMapper.class);

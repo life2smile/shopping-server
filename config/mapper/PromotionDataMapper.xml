@@ -22,8 +22,8 @@
     </select>
 
     <insert id="insertPromotionData" parameterType="com.hanxiao.po.PromotionItemData">
-        insert into promotion_data(type,description,imgUrl,actionUrl,subDescription)
-        values(#{type},#{description},#{imgUrl},#{actionUrl},#{subDescription});
+        insert into promotion_data(type,description,imgUrl,actionUrl,subDescription, originPrice, promotionPrice)
+        values(#{type},#{description},#{imgUrl},#{actionUrl},#{subDescription},#{originPrice},#{promotionPrice});
     </insert>
 
     <update id="updatePromotionData" parameterType="com.hanxiao.po.PromotionItemData">

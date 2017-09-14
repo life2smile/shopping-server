@@ -82,14 +82,14 @@ public class DiscountDataMapperTest {
     }
 
     public DiscountItemData getData() {
-        String title = "范冰冰潮流墨镜女百搭韩版时尚新款大框圆脸瘦脸反光太阳镜女";
-        String desc = "眼镜见过不少 但见到它内心还是澎湃了 不挑脸型， 从去年一直火到现在 适合各种脸型，很多网红也在带 圆形的设计 金属质感棒棒哒 自留款 出游 聚会 外出 上班路上 我觉得都是挺适合带 而且墨镜也不挑季节 还能外出能做很好的修饰 自留款 哈哈";
+        String title = "孕妇打底裤秋装孕妇裤秋季外穿长裤2017新款潮妈春秋托腹秋冬裤子【包邮】";
+        String desc = "孕妇打底裤秋装孕妇裤秋季外穿长裤2017新款潮妈春秋托腹秋冬裤子【包邮】";
         String type = "";
-        String imgUrl = "http://s3.mogucdn.com/p2/161217/10715149_4d716kh1ag04bfjk1fbibhj61e084_640x960.jpg_468x468.jpg";
-        String actionUrl = "https://g.mogujie.com/162JEaRP";
-        String platformDesc = "蘑菇街专享";
-        double originPrice = 18.80;
-        double promotionPrice = 0;
+        String imgUrl = "https://img.alicdn.com/imgextra/i2/2433136455/TB2k.DjabwTMeJjSszfXXXbtFXa_!!2433136455.jpg_430x430q90.jpg";
+        String actionUrl = "http://e22a.com/h.IX0zw1";
+        String platformDesc = CouponUtils.ONLY_TIANMAO;
+        double originPrice = 85.00;
+        double promotionPrice = 29.00;
         double discount = 0;
 
         DiscountItemData data = new DiscountItemData();

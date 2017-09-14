@@ -12,6 +12,8 @@ public class PromotionItemData {
     private String actionUrl;
     private String type;
     private String subDescription;
+    private double originPrice;
+    private double promotionPrice;
     private List<PromotionItemBanner> banners;
 
     public long getId() {
@@ -68,5 +70,21 @@ public class PromotionItemData {
 
     public void setSubDescription(String subDescription) {
         this.subDescription = subDescription;
+    }
+
+    public double getOriginPrice() {
+        return originPrice;
+    }
+
+    public void setOriginPrice(double originPrice) {
+        this.originPrice = originPrice;
+    }
+
+    public double getPromotionPrice() {
+        return promotionPrice;
+    }
+
+    public void setPromotionPrice(double promotionPrice) {
+        this.promotionPrice = promotionPrice;
     }
 }

@@ -14,6 +14,7 @@ public class CouponItemData {
     private String platformDesc;
     private String type;
     private String actionUrl;
+    private boolean hasTicket;
 
     public String getType() {
         return type;
@@ -93,5 +94,13 @@ public class CouponItemData {
 
     public void setActionUrl(String actionUrl) {
         this.actionUrl = actionUrl;
+    }
+
+    public boolean getHasTicket() {
+        return hasTicket;
+    }
+
+    public void setHasTicket(boolean hasTicket) {
+        this.hasTicket = hasTicket;
     }
 }

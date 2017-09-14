@@ -49,7 +49,7 @@ public class PromotionController {
             List<PromotionItemData> list = new ArrayList<PromotionItemData>();
             params.clear();
             params.put("begin", BusinessUtil.DEFAULT_BEGIN);
-            params.put("offset", BusinessUtil.DEFAULT_OFFSET);
+            params.put("offset", 30);
             for (PromotionItemData itemData : items) {
                 params.put("type", itemData.getType());
                 PromotionItemBannerMapper bannerMapper = sqlSession.getMapper(PromotionItemBannerMapper.class);

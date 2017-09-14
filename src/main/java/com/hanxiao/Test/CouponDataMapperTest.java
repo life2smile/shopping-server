@@ -63,7 +63,6 @@ public class CouponDataMapperTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         CouponItemMapper itemMapper = sqlSession.getMapper(CouponItemMapper.class);
         List<CouponItemData> list = itemMapper.searchCouponDataWithOffset(map);
-
     }
 
     @Test
@@ -76,17 +75,17 @@ public class CouponDataMapperTest {
     }
 
     private CouponItemData getData() {
-        String type = "4";
-        String description = "【24卡位】男女士防消磁银行卡套信用卡包名片夹卡片包\n";//推广文案
-        double originPrice = 13.90;
-        double couponPrice = 3.90;
+        String type = CouponUtils.TYPE_MUYING;
+        String description = "孕妇打底裤秋装孕妇裤秋季外穿长裤2017新款潮妈春秋托腹秋冬裤子【包邮】";//推广文案
+        double originPrice = 29.00;
+        double couponPrice = 29.00;
         double couponValue = originPrice - couponPrice;
-        String imgUrl = "http://s3.mogucdn.com/mlcdn/c45406/170728_504h6d3ifjg7382167ad7fcfe380f_640x960.jpg_468x468.jpg";
-        String actionUrl = "https://g.mogujie.com/132JCBfU";//跳转链
+        String imgUrl = "https://img.alicdn.com/imgextra/i2/2433136455/TB2k.DjabwTMeJjSszfXXXbtFXa_!!2433136455.jpg_430x430q90.jpg";
+        String actionUrl = "http://e22a.com/h.IX0zw1";//跳转链
+        boolean hasTicket = false;
 
-        String platFormImg = "mogujie_icon.png";
-        String platformDesc = "蘑菇街";
-
+        String platFormImg = CouponUtils.PNG_TIANMAO;
+        String platformDesc = CouponUtils.PNG_TIANMAO;
         CouponItemData data = new CouponItemData();
         data.setDescription(description);
         data.setCouponPrice(couponPrice);
@@ -97,32 +96,33 @@ public class CouponDataMapperTest {
         data.setPlatformImg(platFormImg);
         data.setActionUrl(actionUrl);
         data.setPlatformDesc(platformDesc);
+        data.setHasTicket(hasTicket);
         return data;
     }
 
     @Test
     public void testUpdateCouponData() throws Exception {
-        for (int i = 0; i < 40; i++) {
-            SqlSession sqlSession = sqlSessionFactory.openSession();
-            CouponItemMapper itemMapper = sqlSession.getMapper(CouponItemMapper.class);
-            CouponItemData data = new CouponItemData();
-            data.setDescription("商品测试");
-            data.setCouponPrice(190 + i);
-            data.setCouponValue(11 + i);
-            data.setOriginPrice(189 + i);
-            data.setId(i);
-            data.setType(i % 6 + "");
-            data.setDescription("蘑菇街专享");
-            data.setActionUrl("https://g.mogujie.com/152Jhuzt");
-            if (i % 2 == 0) {
-                data.setImageUrl("https://gw.alicdn.com/bao/uploaded/i2/TB1.5jLOpXXXXaKapXXXXXXXXXX_!!0-item_pic.jpg_640x480Q50s50.jpg_.webp");
-            } else {
-                data.setImageUrl("http://img0.imgtn.bdimg.com/it/u=3395581086,3505521106&fm=21&gp=0.jpg");
-            }
-            itemMapper.updateCouponData(data);
-            sqlSession.commit();
-            sqlSession.close();
-        }
+//        for (int i = 0; i < 40; i++) {
+//            SqlSession sqlSession = sqlSessionFactory.openSession();
+//            CouponItemMapper itemMapper = sqlSession.getMapper(CouponItemMapper.class);
+//            CouponItemData data = new CouponItemData();
+//            data.setDescription("商品测试");
+//            data.setCouponPrice(190 + i);
+//            data.setCouponValue(11 + i);
+//            data.setOriginPrice(189 + i);
+//            data.setId(i);
+//            data.setType(i % 6 + "");
+//            data.setDescription("蘑菇街专享");
+//            data.setActionUrl("https://g.mogujie.com/152Jhuzt");
+//            if (i % 2 == 0) {
+//                data.setImageUrl("https://gw.alicdn.com/bao/uploaded/i2/TB1.5jLOpXXXXaKapXXXXXXXXXX_!!0-item_pic.jpg_640x480Q50s50.jpg_.webp");
+//            } else {
+//                data.setImageUrl("http://img0.imgtn.bdimg.com/it/u=3395581086,3505521106&fm=21&gp=0.jpg");
+//            }
+//            itemMapper.updateCouponData(data);
+//            sqlSession.commit();
+//            sqlSession.close();
+//        }
     }
 
     @Test

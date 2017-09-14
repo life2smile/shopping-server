@@ -10,10 +10,10 @@
     <bean class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping"/>
 
     <!--使用单个的配置方式（与component-scan实现功能相同）：配置handler，将编写的handler在spring容器中加载这里.action相应于前端控制器中配置拦截的.action-->
-    <bean id="itemsController1" name="/item/queryItem.action"
-          class="com.hanxiao.controller.testcontroller.ItemsController1"/>
-    <bean id="itemsController2" name="/item/editItem.action"
-          class="com.hanxiao.controller.testcontroller.ItemsController2"/>
+    <!--<bean id="login" name="/v1/login.action"-->
+          <!--class="com.hanxiao.controller.webController.controller.LoginController"/>-->
+    <!--<bean id="itemsController2" name="/item/editItem.action"-->
+    <!--class="com.hanxiao.controller.testcontroller.ItemsController2"/>-->
 
     <!--&lt;!&ndash;注解映射器&ndash;&gt;-->
     <!--<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"/>-->
@@ -55,7 +55,7 @@
     解析jsp视图，默认使用jstl标签，classpath下要有jstl的包-->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <!--使用前缀和后缀，在Controller中设置视图名的时候会自动加上前缀和后缀-->
-        <property name="prefix" value="/WEB-INF/jsp/"/>
+        <property name="prefix" value="/WEB-INF/web"/>
         <property name="suffix" value=".jsp"/>
     </bean>
 

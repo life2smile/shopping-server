@@ -50,8 +50,8 @@
 
 
     <insert id="insertCouponData" parameterType="com.hanxiao.po.CouponItemData">
-        insert into coupon_data(type,description,originPrice,couponPrice,couponValue,imageUrl,actionUrl,platformImg,platformDesc)
-        values(#{type},#{description},#{originPrice},#{couponPrice},#{couponValue},#{imageUrl},#{actionUrl},#{platformImg},#{platformDesc});
+        insert into coupon_data(type,description,originPrice,couponPrice,couponValue,imageUrl,actionUrl,platformImg,platformDesc,hasTicket)
+        values(#{type},#{description},#{originPrice},#{couponPrice},#{couponValue},#{imageUrl},#{actionUrl},#{platformImg},#{platformDesc},#{hasTicket});
     </insert>
 
     <update id="updateCouponData" parameterType="com.hanxiao.po.CouponItemData">
