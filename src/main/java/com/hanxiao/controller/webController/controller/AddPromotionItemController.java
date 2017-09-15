@@ -137,6 +137,7 @@ public class AddPromotionItemController {
         data.setPrice(params.getPrice());
         data.setActionUrl(params.getActionUrl());
         data.setImgUrl(params.getImgUrl());
+        data.setDescription(params.getDescription());
         return data;
     }
 

@@ -74,6 +74,24 @@
                 });
             });
 
+            $.ajax({
+                type: "POST",
+                url: "${pageContext.request.contextPath}/v1/getCategoryType.action",
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify(getJsonData()),
+                dataType: "json",
+                success: function (message) {
+                    itemList = message.data;
+                    for (var i = 0; i < itemList.length; i++) {
+                        $(".typeSelect").append("<option value='" + itemList[i].type + "'>" + itemList[i].desc + "</option>")
+                    }
+                },
+                error: function (message) {
+                    alert("商品品类获取失败!请刷新重新获取!");
+                }
+
+            });
+
             $(".typeSelect").change(function () {
                 selectType = 0;
             });

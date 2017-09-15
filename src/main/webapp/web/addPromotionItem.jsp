@@ -160,6 +160,10 @@
 
         function checkFormData() {
             var msg = null;
+            if (!$("#desc").val()) {
+                msg = "请填写商品名称!";
+                return msg;
+            }
 
             if (selectType == -1 || !$(".typeSelect").val()) {
                 msg = "商品品类必填!";
@@ -187,6 +191,7 @@
 
         function getJsonData() {
             return {
+                "description": $("#desc").val(),
                 "type": $(".typeSelect").val(),
                 "price": $("#originPrice").val(),
                 "imgUrl": trimStr($("#imgUrl").val()),
@@ -234,7 +239,8 @@
 <form id="coupon" action="${pageContext.request.contextPath}/v1/addPromotionItemBannerController.action"
       method="post">
     <div>
-        <label>选择商品品类：</label>
+        <label>商品名称：</label><input class="normal" id="desc" placeholder="请简单描述该商品"><br>
+        <label>商品类型</label>
         <select class="typeSelect">
             <option value="">请选择</option>
         </select><br>

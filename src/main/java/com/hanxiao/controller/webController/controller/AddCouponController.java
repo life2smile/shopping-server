@@ -44,6 +44,27 @@ public class AddCouponController {
         return data;
     }
 
+
+    @RequestMapping(value = "getCategoryType", method = {RequestMethod.POST})
+    @ResponseBody
+    public WebResponseData getCategoryType(@RequestBody String request) {
+        WebResponseData data = new WebResponseData();
+        String code = "1001";
+        String message = "success!";
+        try {
+            CouponRequestParams params = JSON.parseObject(request, CouponRequestParams.class);
+            System.out.println(params+"-------------");
+            insertCouponData(params);
+        } catch (Exception e) {
+            code = "1002";
+            message = "fail!";
+            e.printStackTrace();
+        }
+        data.setMessage(message);
+        data.setCode(code);
+        return data;
+    }
+
     private void insertCouponData(CouponRequestParams params) throws Exception {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         CouponItemMapper itemMapper = sqlSession.getMapper(CouponItemMapper.class);
