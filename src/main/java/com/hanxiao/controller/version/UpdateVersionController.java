@@ -13,6 +13,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import java.sql.Timestamp;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by wenzhi on 17/6/21.
@@ -32,8 +36,13 @@ public class UpdateVersionController {
         try {
             VersionRequest versionRequest = JSON.parseObject(request, VersionRequest.class);
             //更新用户登录频率
+            Map params = new HashMap();
+            params.put("deviceId", versionRequest.getDeviceId());
+            params.put("firstDate", new Timestamp(new Date().getTime()));
+            params.put("lastDate", new Timestamp(new Date().getTime()));
             VersionMapper versionMapper = sqlSession.getMapper(VersionMapper.class);
-            versionMapper.insertUser(versionRequest.getDeviceId());
+            versionMapper.insertUser(params);
+            sqlSession.commit();
 
             //检查是否有新版本
             String oldVersion = versionRequest.getVersion();

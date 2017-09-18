@@ -36,6 +36,17 @@
         order by id desc limit #{begin},#{offset}
     </select>
 
+    <select id="searchDiscountDataWithOffset" resultType="com.hanxiao.po.DiscountItemData" parameterType="java.util.Map">
+        select * from discount_data
+        <where>
+            <if test="keyword != null">
+                description like '%${keyword}%'
+            </if>
+        </where>
+        <!--从第begin条记录起，查出offset条记录-->
+        order by id desc limit #{begin},#{offset}
+    </select>
+
 
     <insert id="insertDiscountData" parameterType="com.hanxiao.po.DiscountItemData">
         insert into

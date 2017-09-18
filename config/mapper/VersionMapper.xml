@@ -13,10 +13,10 @@
         select * from version;
     </select>
 
-    <insert id="insertUser" parameterType="java.lang.String">
+    <insert id="insertUser" parameterType="java.util.Map">
         <!--replace into users(deviceId) values(#{deviceId});-->
         <!--这样多的目的，是即保存了登录用户的唯一性，又可以知道该用户的登录频率-->
-        insert into users(deviceId) values(#{deviceId})
-        on duplicate key update id = id + 1;
+        insert into users(deviceId, lastDate) values(#{deviceId},#{lastDate},#{firstDate})
+        on duplicate key update id = id + 1, lastDate = #{lastDate};
     </insert>
 </mapper>

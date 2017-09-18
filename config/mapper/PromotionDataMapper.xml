@@ -21,6 +21,8 @@
         select * from promotion_data order by id desc limit #{begin},#{offset};
     </select>
 
+
+
     <insert id="insertPromotionData" parameterType="com.hanxiao.po.PromotionItemData">
         insert into promotion_data(type,description,imgUrl,actionUrl,subDescription, originPrice, promotionPrice)
         values(#{type},#{description},#{imgUrl},#{actionUrl},#{subDescription},#{originPrice},#{promotionPrice});

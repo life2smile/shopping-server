@@ -1,5 +1,7 @@
 package com.hanxiao.po;
 
+import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
+
 /**
  * Created by wenzhi on 17/6/22.
  */
@@ -16,6 +18,7 @@ public class DiscountItemData {
     private String actionUrl;
     private String title;
     private String content;
+    private String platformBg;
 
     public String getType() {
         return type;
@@ -111,5 +114,18 @@ public class DiscountItemData {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public String getPlatformBg() {
+        return platformBg;
+    }
+
+    public void setPlatformBg(String platformBg) {
+        this.platformBg = platformBg;
+    }
+
+    @Override
+    public String toString() {
+        return ReflectionToStringBuilder.toString(this);
     }
 }

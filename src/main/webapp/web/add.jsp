@@ -37,7 +37,7 @@
 <div id="tabs">
 
     <ul>
-        <li id="coupon"><a href="#couponDiv">特惠区</a></li>
+        <li id="coupon"><a href="#couponDiv">领券区</a></li>
         <li id="discover"><a href="#discoverDiv">发现区</a></li>
         <li id="promotion"><a href="#promotionDiv">精品区</a></li>
     </ul>

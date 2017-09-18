@@ -13,6 +13,8 @@ public interface DiscountItemMapper {
 
     List<DiscountItemData> findDiscountDataWithOffset(Map<String, Object> map) throws Exception;
 
+    List<DiscountItemData> searchDiscountDataWithOffset(Map<String, Object> map) throws Exception;
+
     void insertDiscountData(DiscountItemData data) throws Exception;
 
     void updateDiscountData(DiscountItemData data) throws Exception;

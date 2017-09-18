@@ -1,8 +1,6 @@
 package com.hanxiao.Test;
 
-import com.hanxiao.mapper.CouponItemMapper;
-import com.hanxiao.mapper.TitleMapper;
-import com.hanxiao.mapper.VersionMapper;
+import com.hanxiao.mapper.*;
 import com.hanxiao.po.CouponItemData;
 import com.hanxiao.po.CouponItemTitle;
 import org.apache.ibatis.io.Resources;
@@ -14,6 +12,8 @@ import org.junit.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -158,8 +158,53 @@ public class CouponDataMapperTest {
     public void insertDeviceId() throws Exception {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         VersionMapper versionMapper = sqlSession.getMapper(VersionMapper.class);
-        versionMapper.insertUser("99909");
+        Map params = new HashMap();
+        params.put("deviceId", "99909");
+        params.put("lastDate", new Timestamp(new Date().getTime()));
+        versionMapper.insertUser(params);
         sqlSession.commit();
+    }
+
+
+    //搜索test
+    @Test
+    public void testSearchCommodity() {
+        HashMap map = new HashMap();
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        try {
+            HashMap<String, Object> params = new HashMap<String, Object>();
+            params.put("begin", 0);
+            params.put("offset", 20);
+            params.put("keyword", "vivo");
+            List list = searchCommodityByType("2", sqlSession, params);
+            map.put("list", list);
+            //当list的数目等于请求数时，说明还有数据，否则说明没有更多数据
+            map.put("hasMore", list != null && list.size() == 20);
+        } catch (Exception e) {
+            e.printStackTrace();
+            map.clear();
+        }
+        sqlSession.clearCache();//这里为了保证外部修改可以及时反馈到系统上，所以清空缓存。
+        sqlSession.close();
+    }
+
+    private List searchCommodityByType(String type, SqlSession sqlSession, Map params) throws Exception {
+        //查询商品内容
+        if (CouponUtils.SEARCH_MODULE_TICKET.equals(type)) {//领券区
+            CouponItemMapper itemMapper = sqlSession.getMapper(CouponItemMapper.class);
+            return itemMapper.searchCouponDataWithOffset(params);
+        }
+
+        if (CouponUtils.SEARCH_MODULE_FIND.equals(type)) {//发现区
+            DiscountItemMapper itemMapper = sqlSession.getMapper(DiscountItemMapper.class);
+            return itemMapper.searchDiscountDataWithOffset(params);
+        }
+
+        if (CouponUtils.SEARCH_MODULE_BOUTIQUE.equals(type)) {//精品区
+            PromotionItemBannerMapper bannerMapper = sqlSession.getMapper(PromotionItemBannerMapper.class);
+            return bannerMapper.searchPromotionDataWithOffset(params);
+        }
+        return null;
     }
 
 

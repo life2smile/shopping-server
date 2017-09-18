@@ -2,6 +2,8 @@ package com.hanxiao.mapper;
 
 import com.hanxiao.po.VersionData;
 
+import java.util.Map;
+
 /**
  * Created by wenzhi on 17/6/22.
  */
@@ -15,6 +17,6 @@ public interface VersionMapper {
     void deleteVersion(long id) throws Exception;
 
     //这里记录下用户登陆的设备，由于就这一个方法所以暂且放在这里吧，有精力可以单拉
-    void insertUser(String deviceId) throws Exception;
+    void insertUser(Map params) throws Exception;
 
 }

@@ -78,12 +78,12 @@
                 type: "POST",
                 url: "${pageContext.request.contextPath}/v1/getCategoryType.action",
                 contentType: "application/json; charset=utf-8",
-                data: JSON.stringify(getJsonData()),
+                data: JSON.stringify(""),
                 dataType: "json",
                 success: function (message) {
-                    itemList = message.data;
-                    for (var i = 0; i < itemList.length; i++) {
-                        $(".typeSelect").append("<option value='" + itemList[i].type + "'>" + itemList[i].desc + "</option>")
+                    var titles = message.data;
+                    for (var i = 0; i < titles.length; i++) {
+                        $(".typeSelect").append("<option value='" + titles[i].type + "'>" + titles[i].title + "</option>")
                     }
                 },
                 error: function (message) {
@@ -162,7 +162,7 @@
                 "actionUrl": trimStr($("#actionUrl").val()),//跳转链
                 "hasTicket": hasTicket != 0,
                 "platformImg": $(".platformSelect").val(),
-                "platformDesc": $(".platformSelect").text() + "专享"
+                "platformDesc": $(".platformSelect").find("option:selected").text() + "专享"
             };
         }
 
@@ -185,13 +185,6 @@
         <label>选择商品品类：</label>
         <select class="typeSelect">
             <option value="">请选择</option>
-            <option value="1">零食</option>
-            <option value="2">男装</option>
-            <option value="3">女装</option>
-            <option value="4">百货</option>
-            <option value="5">母婴</option>
-            <option value="6">家居</option>
-            <option value="7">书籍</option>
         </select><br>
         <label>商品描述：</label><input class="normal" id="desc" placeholder="输入商品描述"><br>
         <label>原价：</label><input class="normal" id="originPrice" placeholder="输入商品原来价格"><br>

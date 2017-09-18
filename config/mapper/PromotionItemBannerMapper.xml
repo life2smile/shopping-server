@@ -20,6 +20,17 @@
         order by id desc limit #{begin},#{offset};
     </select>
 
+    <select id="searchPromotionDataWithOffset" resultType="com.hanxiao.po.PromotionItemBanner" parameterType="java.util.Map">
+        select * from promotion_item_banner
+        <where>
+            <if test="keyword != null">
+                description like '%${keyword}%'
+            </if>
+        </where>
+        <!--从第begin条记录起，查出offset条记录-->
+        order by id desc limit #{begin},#{offset}
+    </select>
+
     <insert id="insertBanners" parameterType="com.hanxiao.po.PromotionItemBanner">
         insert into promotion_item_banner(type,imgUrl,actionUrl,price,description)
         values(#{type},#{imgUrl},#{actionUrl},#{price},#{description});

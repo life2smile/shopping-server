@@ -127,11 +127,11 @@
                 "desc": $("#desc").val(),//推广文案
                 "originPrice": $("#originPrice").val(),
                 "promotionPrice": $("#couponPrice").val(),
-                "discount": ($("#originPrice").val() - $("#couponPrice").val()) / $("#originPrice").val(),
+                "discount": $("#originPrice").val() - $("#couponPrice").val(),
                 "imgUrl": trimStr($("#imgUrl").val()),
                 "actionUrl": trimStr($("#actionUrl").val()),//跳转链
                 "platformImg": $(".platformSelect").val(),
-                "platformDesc": $(".platformSelect").text() + "专享",
+                "platformDesc": $(".platformSelect").find("option:selected").text() + "专享",
             };
         }
 

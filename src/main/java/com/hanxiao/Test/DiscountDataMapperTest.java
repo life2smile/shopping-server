@@ -11,6 +11,8 @@ import org.junit.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -28,6 +30,52 @@ public class DiscountDataMapperTest {
                 .build(inputStream);
 
         this.sqlSessionFactory = sqlSessionFactory;
+    }
+
+    @Test
+    public void testFindWithOffset() throws Exception {
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        DiscountItemMapper itemMapper = sqlSession.getMapper(DiscountItemMapper.class);
+        HashMap<String, Object> params = new HashMap<String, Object>();
+        params.put("begin", 5);
+        params.put("offset", 10);
+        params.put("type", "");
+        List<DiscountItemData> list = itemMapper.findDiscountDataWithOffset(params);
+
+        System.out.println(initItemColor(list));
+    }
+
+    private List<DiscountItemData> initItemColor(List<DiscountItemData> list) {
+        List<DiscountItemData> newList = new ArrayList<DiscountItemData>();
+        if (list != null) {
+            for (DiscountItemData item : list) {
+                item.setPlatformBg(getColor(item));
+                newList.add(item);
+            }
+        }
+        return newList;
+    }
+
+    private String getColor(DiscountItemData item) {
+        String color = null;
+        if (item != null) {
+            if (CouponUtils.ONLY_JINGDONG.equals(item.getPlatformDesc())) {
+                color = "#C91623";
+            }
+
+            if (CouponUtils.ONLY_TAOBAO.equals(item.getPlatformDesc())) {
+                color = "#ED6D00";
+            }
+            if (CouponUtils.ONLY_TIANMAO.equals(item.getPlatformDesc())) {
+                color = "#970102";
+            }
+
+            if (CouponUtils.ONLY_MOGUJIE.equals(item.getPlatformDesc())) {
+                color = "#FF4081";
+            }
+        }
+        System.out.println(color + "--------------------");
+        return color;
     }
 
     @Test

@@ -4,6 +4,11 @@ package com.hanxiao.Test;
  * Created by wenzhi on 17/8/30.
  */
 public class CouponUtils {
+
+    public final static String SEARCH_MODULE_TICKET = "0";
+    public final static String SEARCH_MODULE_FIND = "1";
+    public final static String SEARCH_MODULE_BOUTIQUE = "2";
+
     public final static String TYPE_ALL = "0";
     public final static String TYPE_LINGSHI = "1";
     public final static String TYPE_NANZHUANG = "2";
@@ -12,7 +17,6 @@ public class CouponUtils {
     public final static String TYPE_MUYING = "5";
     public final static String TYPE_JIAJU = "6";
     public final static String TYPE_SHUJI = "7";
-
 
 
     public final static String PNG_MOGUJIE = "mogujie_icon.png";
@@ -30,4 +34,22 @@ public class CouponUtils {
     public final static String ONLY_JINGDONG = "京东专享";
     public final static String ONLY_TIANMAO = "天猫专享";
     public final static String ONLY_TAOBAO = "淘宝专享";
+
+
+    public static String getColor(String platform) {
+        String color = null;
+        if (CouponUtils.ONLY_JINGDONG.equals(platform)) {
+            color = "#C91623";
+        }
+        if (CouponUtils.ONLY_MOGUJIE.equals(platform)) {
+            color = "#FF4081";
+        }
+        if (CouponUtils.ONLY_TAOBAO.equals(platform)) {
+            color = "#ED6D00";
+        }
+        if (CouponUtils.ONLY_TIANMAO.equals(platform)) {
+            color = "#970102";
+        }
+        return color;
+    }
 }

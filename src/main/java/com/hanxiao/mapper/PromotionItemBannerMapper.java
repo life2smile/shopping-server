@@ -11,6 +11,8 @@ import java.util.Map;
 public interface PromotionItemBannerMapper {
     List<PromotionItemBanner> getBanners(Map<String, Object> map) throws Exception;
 
+    List<PromotionItemBanner> searchPromotionDataWithOffset(Map<String, Object> map) throws Exception;
+
     void insertBanners(PromotionItemBanner banner) throws Exception;
 
     void updateBanners() throws Exception;

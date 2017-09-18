@@ -1,6 +1,7 @@
 package com.hanxiao.controller.discount;
 
 import com.alibaba.fastjson.JSON;
+import com.hanxiao.Test.CouponUtils;
 import com.hanxiao.controller.common.BusinessUtil;
 import com.hanxiao.mapper.DiscountItemMapper;
 import com.hanxiao.mapper.TopBannerMapper;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -51,6 +53,8 @@ public class DiscountController {
             itemMapper = sqlSession.getMapper(DiscountItemMapper.class);
             List<DiscountItemData> list = itemMapper.findDiscountDataWithOffset(params);
 
+            list = initItemColor(list);
+
             //查询顶部的banner内容
             params.clear();
             params.put("begin", BusinessUtil.DEFAULT_BEGIN);
@@ -71,5 +75,16 @@ public class DiscountController {
         sqlSession.clearCache();//这里为了保证外部修改可以及时反馈到系统上，所以清空缓存。
         sqlSession.close();
         return map;
+    }
+
+    private List<DiscountItemData> initItemColor(List<DiscountItemData> list) {
+        List<DiscountItemData> newList = new ArrayList<DiscountItemData>();
+        if (list != null) {
+            for (DiscountItemData item : list) {
+                item.setPlatformBg(CouponUtils.getColor(item.getPlatformDesc()));
+                newList.add(item);
+            }
+        }
+        return newList;
     }
 }

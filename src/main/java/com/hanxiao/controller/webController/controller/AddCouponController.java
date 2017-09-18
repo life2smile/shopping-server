@@ -3,7 +3,9 @@ package com.hanxiao.controller.webController.controller;
 import com.alibaba.fastjson.JSON;
 import com.hanxiao.controller.webController.params.CouponRequestParams;
 import com.hanxiao.mapper.CouponItemMapper;
+import com.hanxiao.mapper.TitleMapper;
 import com.hanxiao.po.CouponItemData;
+import com.hanxiao.po.CouponItemTitle;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.stereotype.Controller;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * Created by wenzhi on 17/6/21.
@@ -32,7 +35,7 @@ public class AddCouponController {
         String message = "success!";
         try {
             CouponRequestParams params = JSON.parseObject(request, CouponRequestParams.class);
-            System.out.println(params+"-------------");
+            System.out.println(params + "-------------");
             insertCouponData(params);
         } catch (Exception e) {
             code = "1002";
@@ -52,9 +55,11 @@ public class AddCouponController {
         String code = "1001";
         String message = "success!";
         try {
-            CouponRequestParams params = JSON.parseObject(request, CouponRequestParams.class);
-            System.out.println(params+"-------------");
-            insertCouponData(params);
+            //获取领券区的titles
+            SqlSession sqlSession = sqlSessionFactory.openSession();
+            TitleMapper titleMapper = sqlSession.getMapper(TitleMapper.class);
+            List<CouponItemTitle> titles = titleMapper.getTitles("");
+            data.setData(titles);
         } catch (Exception e) {
             code = "1002";
             message = "fail!";
