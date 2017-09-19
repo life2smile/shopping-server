@@ -9,6 +9,7 @@ public class PromotionItemBanner {
     private double price;
     private String type;
     private String description;
+    private String remarks;
 
     public String getImgUrl() {
         return imgUrl;
@@ -48,5 +49,13 @@ public class PromotionItemBanner {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getRemarks() {
+        return remarks;
+    }
+
+    public void setRemarks(String remarks) {
+        this.remarks = remarks;
     }
 }

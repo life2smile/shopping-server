@@ -165,6 +165,11 @@
                 return msg;
             }
 
+            if (!$("#extraInfo").val()) {
+                msg = "请填写商品描述信息!";
+                return msg;
+            }
+
             if (selectType == -1 || !$(".typeSelect").val()) {
                 msg = "商品品类必填!";
                 return msg;
@@ -192,6 +197,7 @@
         function getJsonData() {
             return {
                 "description": $("#desc").val(),
+                "remarks": $("#extraInfo").val(),
                 "type": $(".typeSelect").val(),
                 "price": $("#originPrice").val(),
                 "imgUrl": trimStr($("#imgUrl").val()),
@@ -240,6 +246,7 @@
       method="post">
     <div>
         <label>商品名称：</label><input class="normal" id="desc" placeholder="请简单描述该商品"><br>
+        <label>商品描述附加信息：</label><input class="normal" id="extraInfo" placeholder="请添加商品描述附加信息"><br>
         <label>商品类型</label>
         <select class="typeSelect">
             <option value="">请选择</option>

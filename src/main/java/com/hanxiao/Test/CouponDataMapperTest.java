@@ -175,7 +175,7 @@ public class CouponDataMapperTest {
             HashMap<String, Object> params = new HashMap<String, Object>();
             params.put("begin", 0);
             params.put("offset", 20);
-            params.put("keyword", "vivo");
+            params.put("keyword", "手机");
             List list = searchCommodityByType("2", sqlSession, params);
             map.put("list", list);
             //当list的数目等于请求数时，说明还有数据，否则说明没有更多数据
