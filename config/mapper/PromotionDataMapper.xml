@@ -18,9 +18,8 @@
 
     <select id="findPromotionDataWithOffset" resultType="com.hanxiao.po.PromotionItemData"
             parameterType="java.util.Map">
-        select * from promotion_data order by id desc limit #{begin},#{offset};
+        select * from promotion_data order by priority limit #{begin},#{offset};
     </select>
-
 
 
     <insert id="insertPromotionData" parameterType="com.hanxiao.po.PromotionItemData">

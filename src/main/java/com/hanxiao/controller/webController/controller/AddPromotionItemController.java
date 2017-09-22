@@ -138,6 +138,7 @@ public class AddPromotionItemController {
         data.setActionUrl(params.getActionUrl());
         data.setImgUrl(params.getImgUrl());
         data.setDescription(params.getDescription());
+        data.setRemarks(params.getRemarks());
         return data;
     }
 

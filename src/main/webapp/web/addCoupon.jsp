@@ -177,7 +177,7 @@
     </script>
 </head>
 
-<h1>特惠区商品添加：</h1>
+<h1>领券区商品添加：</h1>
 
 <form id="coupon" action="${pageContext.request.contextPath}/v1/addCouponController.action"
       method="post">

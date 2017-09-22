@@ -14,6 +14,7 @@ public class PromotionItemData {
     private String subDescription;
     private double originPrice;
     private double promotionPrice;
+    private int priority;
     private List<PromotionItemBanner> banners;
 
     public long getId() {
@@ -86,5 +87,13 @@ public class PromotionItemData {
 
     public void setPromotionPrice(double promotionPrice) {
         this.promotionPrice = promotionPrice;
+    }
+
+    public int getPriority() {
+        return priority;
+    }
+
+    public void setPriority(int priority) {
+        this.priority = priority;
     }
 }

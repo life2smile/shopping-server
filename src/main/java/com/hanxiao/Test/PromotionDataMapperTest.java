@@ -149,6 +149,7 @@ public class PromotionDataMapperTest {
         data.setPrice(price);
         data.setActionUrl(actionUrl);
         data.setImgUrl(imgUrl);
+        data.setRemarks("hhhh");
 
         return data;
     }

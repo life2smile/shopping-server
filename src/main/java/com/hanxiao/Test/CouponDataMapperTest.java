@@ -161,6 +161,7 @@ public class CouponDataMapperTest {
         Map params = new HashMap();
         params.put("deviceId", "99909");
         params.put("lastDate", new Timestamp(new Date().getTime()));
+        params.put("firstDate", new Timestamp(new Date().getTime()));
         versionMapper.insertUser(params);
         sqlSession.commit();
     }
